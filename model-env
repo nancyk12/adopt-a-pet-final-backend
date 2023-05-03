@@ -1,0 +1,10 @@
+PORT=5001
+ATLAS_URI=mongodb+srv://nancyk12:password@cluster0.eerxi5z.mongodb.net/?retryWrites=true&w=majority
+
+MONGO_DATABASE=blog-test
+
+JWT_SECRET_KEY=
+
+REACT_APP_TOKEN_HEADER_KEY=
+
+TOKEN_HEADER_KEY=
