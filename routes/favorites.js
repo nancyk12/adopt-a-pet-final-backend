@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {getAllFavorites, addFavorite, removeFavorite } = require("../controllers/FavoritesController")
+const {getAllFavorites, addFavorite, deleteFavorite } = require("../controllers/FavoritesController")
 //require("../controllers/blogsController");
 
 //callback function
@@ -20,6 +20,6 @@ router.post('/addFavorite', addFavorite);
 
 // DELETE /favorites/:id
 // Remove a favorite
-router.delete('/delete-by-id/:idToDelete', removeFavorite);
+router.delete('/delete-by-id/:idToDelete', deleteFavorite);
 
 module.exports = router;

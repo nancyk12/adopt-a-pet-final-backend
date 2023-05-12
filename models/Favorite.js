@@ -5,13 +5,15 @@ const { v4: uuidv4 } = require("uuid");
 // //uuid 
 
 const favoriteSchema = new mongoose.Schema({
-    
+
+    id: { type: String, default: uuidv4 },
     image: { type: String, require: true },
     name: { type: String, require: true },
-    type: { type: String, require: true },
+    age: { type: String, require: true },
     breeds: { type: String, require: true },
+    gender: { type: String, require: true },
     location: { type: String, require: true },
-    id: { type: String, default: uuidv4 },
+   
 
 });
 const Favorite = mongoose.model("Favorite", favoriteSchema);

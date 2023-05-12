@@ -1,58 +1,53 @@
 const Favorite = require('../models/Favorite');
 
 // Get all favorites
-const getAllFavorites = async (req, res) => {
+async function getAllFavorites(req, res)  {
   try {
-    const favorites = await Favorite.find({ user: req.user.id }).populate('animal');
-    res.json(favorites);
+    const favorites = await Favorite.find({});
+    res.json({success: true, favorites: allFavorites});
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+    res.json({ success: false, message: error});
   }
-};
+}
 
 // Add a favorite
-const addFavorite = async (req, res) => {
+async function addFavorite (req, res){
   try {
     const newFavorite = new Favorite({
-      user: req.user.id,
       animal: req.body.animalId,
+      image: req.body.image,
+      name: req.body.name,
+      age: req.body.age,
+      breeds: req.body.breeds,
+      gender: req.body.gender,
+      location: req.body.location,
     });
 
-    await newFavorite.save();
-
-    res.json(newFavorite);
+    const response = await newFavorite.save();
+    res.json({ success: true, newFavorite: response});
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+    console.log(error);
+    res.json({ success: false, message: error});
   }
 };
 
-// Remove a favorite
-const removeFavorite = async (req, res) => {
+// delete a favorite
+async function deleteFavorite(req, res) {
   try {
-    const favorite = await Favorite.findById(req.params.id);
-
-    if (!favorite) {
-      return res.status(404).json({ message: 'Favorite not found' });
-    }
-
-    // Check if the favorite belongs to the authenticated user
-    if (favorite.user.toString() !== req.user.id) {
-      return res.status(401).json({ message: 'Unauthorized' });
-    }
-
-    await favorite.remove();
-
-    res.json({ message: 'Favorite removed' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+    const { idToDelete } = req.params;  
+    const deletedFavorite = await Favorite.findOneAndDelete(
+      {id: idToDelete},
+      req.body
+      );
+    res.json({succes: true, deleteFavorite: deletedFavorite});
+  }catch (error){
+    console.log(error);
+    res.json({success: false, message: error});
   }
-};
+    
 
-module.exports = {
+}module.exports = {
   getAllFavorites,
   addFavorite,
-  removeFavorite,
+  deleteFavorite,
 };
