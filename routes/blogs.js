@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const {getAllBlogs, createBlog, getOneBlogById, updateOneBlogById, deleteOneBlogById} = require("../adopt-a-pet-final-backend/bin/controllers/blogsController")
+const {getAllBlogs, createBlog, getOneBlogById, updateOneBlogById, deleteOneBlogById} = require("../controllers/blogsController")
 //require("../controllers/blogsController");
 
 //callback function
@@ -27,5 +27,3 @@ router.put("/update-by-id/:idToUpdate", updateOneBlogById);
 router.delete("/delete-by-id/:idToDelete", deleteOneBlogById)
 
 module.exports = router;
-
-

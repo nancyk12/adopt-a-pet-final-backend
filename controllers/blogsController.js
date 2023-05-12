@@ -1,4 +1,4 @@
-const Blog = require("../../../models/Blog")
+const Blog = require("../models/Blog")
 
 async function getAllBlogs(req, res) {
     try {
@@ -76,4 +76,3 @@ async function deleteOneBlogById(req, res){
     updateOneBlogById,
     deleteOneBlogById,
 };
-

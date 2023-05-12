@@ -4,7 +4,7 @@ const {
 	createUser,
 	loginUser,
 	verifyUser,
-} = require("../adopt-a-pet-final-backend/bin/controllers/usersController");
+} = require("../controllers/usersController");
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
